@@ -27,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
+        findViewById(R.id.create_A).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CreateCountActivity.class);
+                startActivity(intent);
+            }
+        });
 
         comeIn();
     }
