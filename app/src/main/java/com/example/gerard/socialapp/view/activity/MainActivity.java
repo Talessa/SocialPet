@@ -15,6 +15,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+        findViewById(R.id.sign_mail).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignMailActivity.class);
+                startActivity(intent);
             }
         });
         findViewById(R.id.create_A).setOnClickListener(new View.OnClickListener() {
