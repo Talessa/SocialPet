@@ -5,9 +5,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_perfil"
             android:icon="@drawable/user"
-            android:title="Profile" />
+            android:title="Perfil" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -25,9 +25,9 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/sign_out"
+                android:id="@+id/cerrar_sesion"
                 android:icon="@drawable/signout"
-                android:title="Sign out" />
+                android:title="Cerrar Sesion" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

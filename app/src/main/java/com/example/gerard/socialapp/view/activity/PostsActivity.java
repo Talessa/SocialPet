@@ -118,7 +118,7 @@ public class PostsActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_perfil) {
 
         } else if (id == R.id.nav_gallery) {
 
@@ -126,7 +126,7 @@ public class PostsActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.sign_out) {
+        } else if (id == R.id.cerrar_sesion) {
             Log.e("ABC", "signout");
 
             AuthUI.getInstance()
