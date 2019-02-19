@@ -28,20 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
-        findViewById(R.id.sign_mail).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignMailActivity.class);
-                startActivity(intent);
-            }
-        });
-        findViewById(R.id.create_A).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CreateCountActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         comeIn();
     }
@@ -59,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(Arrays.asList(
-                                new AuthUI.IdpConfig.GoogleBuilder().build()))
+                                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                                new AuthUI.IdpConfig.EmailBuilder().build()
+                        ))
                         .build(),
                 RC_SIGN_IN);
     }

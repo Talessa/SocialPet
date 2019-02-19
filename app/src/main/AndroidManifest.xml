@@ -39,7 +39,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".view.activity.CreateCountActivity" />
         <activity android:name=".view.activity.SignMailActivity"></activity>
     </application>
 

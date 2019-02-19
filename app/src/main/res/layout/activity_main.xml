@@ -11,34 +11,12 @@
         android:layout_width="133dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
-        android:text="SIGN Google"
+        android:text="SIGN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/create_A"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="132dp"
-        android:text="CREATE ACOUNT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_mail" />
 
-    <Button
-        android:id="@+id/sign_mail"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Sing Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in" />
 
 </android.support.constraint.ConstraintLayout>
