@@ -1,32 +1,29 @@
-package com.example.gerard.socialapp.view.activity;
+package com.example.gerard.socialapp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.gerard.socialapp.AppAuth;
-import com.example.gerard.socialapp.GlideApp;
-import com.example.gerard.socialapp.ModificarActivity;
-import com.example.gerard.socialapp.R;
 import com.example.gerard.socialapp.model.User;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.gerard.socialapp.view.activity.MainActivity;
+import com.example.gerard.socialapp.view.activity.PerfilActivity;
+import com.example.gerard.socialapp.view.activity.PostsActivity;
 
-public class PerfilActivity extends AppCompatActivity {
+public class ModificarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_modificar);
 
-        ImageView fotou = findViewById(R.id.fotoperfil);
-        TextView nombreu = findViewById(R.id.nombreu);
-        TextView nicku= findViewById(R.id.nicku);
-        TextView emailu = findViewById(R.id.emailu);
-        TextView biografiau = findViewById(R.id.biografiau);
-
+        final ImageView fotou = findViewById(R.id.fotoperfil);
+        final EditText nombreu = findViewById(R.id.nombreu);
+        final EditText nicku= findViewById(R.id.nicku);
+        final EditText emailu = findViewById(R.id.emailu);
+        final EditText biografiau = findViewById(R.id.biografiau);
         if(AppAuth.getInstance().getUser().usuarioPhotoUrl != null) {
             GlideApp.with(this)
                     .load(AppAuth.getInstance().getUser().usuarioPhotoUrl)
@@ -44,11 +41,15 @@ public class PerfilActivity extends AppCompatActivity {
         findViewById(R.id.modificar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PerfilActivity.this, ModificarActivity.class);
+                User user = new User();
+                user.nombre=nombreu.getText().toString();
+                user.nick=nicku.getText().toString();
+                user.email=emailu.getText().toString();
+                user.biografia=biografiau.getText().toString();
+                Intent intent = new Intent(
+                        ModificarActivity.this, PostsActivity.class);
                 startActivity(intent);
             }
         });
-
-       // AppAuth.getInstance().modifyUser(user).set
     }
 }

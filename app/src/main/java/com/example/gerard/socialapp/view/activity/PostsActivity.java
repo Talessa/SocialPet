@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.example.gerard.socialapp.AppAuth;
 import com.example.gerard.socialapp.GlideApp;
+import com.example.gerard.socialapp.ModificarActivity;
 import com.example.gerard.socialapp.R;
 import com.example.gerard.socialapp.view.fragment.LikePostsFragment;
 import com.example.gerard.socialapp.view.fragment.PostsFragment;
@@ -79,14 +80,14 @@ public class PostsActivity extends AppCompatActivity
         ImageView photo = header.findViewById(R.id.userPhoto);
         TextView name = header.findViewById(R.id.userName);
         TextView email = header.findViewById(R.id.userEmail);
-        if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) {
+        if(AppAuth.getInstance().getUser().usuarioPhotoUrl != null) {
             GlideApp.with(this)
-                    .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString())
+                    .load(AppAuth.getInstance().getUser().usuarioPhotoUrl)
                     .circleCrop()
                     .into(photo);
         }
         name.setText(AppAuth.getInstance().getUser().nombre);
-        email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        email.setText(AppAuth.getInstance().getUser().email);
     }
 
     @Override
@@ -121,8 +122,8 @@ public class PostsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_perfil) {
-
-
+            Intent intent = new Intent(PostsActivity.this, PerfilActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

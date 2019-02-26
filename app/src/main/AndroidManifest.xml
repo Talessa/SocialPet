@@ -40,7 +40,8 @@
         </provider>
 
         <activity android:name=".view.activity.SignMailActivity" />
-        <activity android:name=".view.activity.PerfilActivity"></activity>
+        <activity android:name=".view.activity.PerfilActivity" />
+        <activity android:name=".ModificarActivity"></activity>
     </application>
 
 </manifest>
