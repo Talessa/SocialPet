@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gerard.socialapp.AppAuth;
 import com.example.gerard.socialapp.GlideApp;
 import com.example.gerard.socialapp.R;
 import com.example.gerard.socialapp.view.fragment.LikePostsFragment;
@@ -78,12 +79,13 @@ public class PostsActivity extends AppCompatActivity
         ImageView photo = header.findViewById(R.id.userPhoto);
         TextView name = header.findViewById(R.id.userName);
         TextView email = header.findViewById(R.id.userEmail);
-
-        GlideApp.with(this)
-                .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString())
-                .circleCrop()
-                .into(photo);
-        name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) {
+            GlideApp.with(this)
+                    .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString())
+                    .circleCrop()
+                    .into(photo);
+        }
+        name.setText(AppAuth.getInstance().getUser().nombre);
         email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
@@ -119,6 +121,7 @@ public class PostsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_perfil) {
+
 
         } else if (id == R.id.nav_gallery) {
 

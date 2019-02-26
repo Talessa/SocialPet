@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.gerard.socialapp.AppAuth;
 import com.example.gerard.socialapp.R;
 import com.example.gerard.socialapp.model.User;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.util.Arrays;
 
@@ -34,15 +33,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         comeIn();
     }
 
     void comeIn(){
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            startActivity(new Intent(this, PostsActivity.class));
-            finish();
+
+            AppAuth.getInstance().loadUser().setOnLoadCompleteListener(new AppAuth.OnLoadCompleteListener(){
+                public void onComplete(User user){
+                    if(user != null){
+                        startActivity(new Intent(MainActivity.this, PostsActivity.class));
+                        finish();
+                    } else {
+                        AppAuth.getInstance().createUser().setOnCreateCompleteListener(new AppAuth.OnCreateCompleteListener() {
+                            @Override
+                            public void onComplete() {
+                                comeIn();
+                            }
+                        });
+                    }
+                }
+            });
         }
     }
 
@@ -57,25 +70,8 @@ public class MainActivity extends AppCompatActivity {
                         .build(),
                 RC_SIGN_IN);
     }
-    void createuser(){
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser != null) {
-            mReference.child("users/user").child(firebaseUser.getUid());
-            if (mReference == null){
-                User user = new User();
-                user.uid=firebaseUser.getUid();
-                user.nombre=firebaseUser.getDisplayName();
-                user.email=firebaseUser.getEmail();
-                user.usuarioPhotoUrl=firebaseUser.getPhotoUrl();
-                user.nick=" ";
-                user.biografia=" ";
-                FirebaseDatabase.getInstance().getReference()
-                        .child("users")
-                        .child("user")
-                        .setValue(user);
-            }
-        }
-    }
+
+
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -83,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                createuser();
                 comeIn();
             }
         }
